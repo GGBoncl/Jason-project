@@ -8,7 +8,7 @@ def reduce_randomly(a, b):
     b -= actual_used_b
     return max(a, 0), max(b, 0), actual_used_a, actual_used_b
 def probability_randomly():
-    return random.choice([0, 5])
+    return random.choice([0, 6])
 food = 0
 water = 0
 medicine = 0
