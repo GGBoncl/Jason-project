@@ -38,13 +38,13 @@ if user == "yes":
             elif choice == "4":
                 radiation_suit += number
         else:
-            print("Please choose a valid number.")
+            print("Please choose a number.")
 
         if food + water + medicine + radiation_suit > 10:
             print("Too much! You can only bring 10 items total.")
             food = water = medicine = radiation_suit = 0
         elif food + water + medicine + radiation_suit == 10:
-            print("Perfect. You head into the basement to escape the disaster.")
+            print("You head into the basement to escape the disaster.")
             game1 = False
     while health > 0 and day < 7:
         day += 1
@@ -65,8 +65,8 @@ if user == "yes":
         if action == "1":
             if radiation_suit > 0:
                 print("You have a radiation suit. Where do you want to go?\n1. Restaurant\n2. Shop\n3. Hospital")
-                loc = input()
-                if loc in ["1", "2"]:
+                p = input()
+                if p in ["1", "2"]:
                     print("You go out scavenging...")
                     if random.random() < 0.5:
                         print("The place is open!")
@@ -84,7 +84,7 @@ if user == "yes":
                             print("No water found.")
                     else:
                         print("It’s closed. You return empty-handed.")
-                elif loc == "3":
+                elif p == "3":
                     print("You head to the hospital...")
                     if random.random() < 0.5:
                         med_found = probability_randomly()
