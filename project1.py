@@ -1,138 +1,127 @@
 import random
-
 def reduce_randomly(a, b):
-    a -= random.choice([1, 2])
-    b -= random.choice([1, 2])
-    return max(a, 0), max(b, 0)  
-
+    used_a = random.choice([1, 2])
+    used_b = random.choice([1, 2])
+    actual_used_a = min(a, used_a)
+    actual_used_b = min(b, used_b)
+    a -= actual_used_a
+    b -= actual_used_b
+    return max(a, 0), max(b, 0), actual_used_a, actual_used_b
 def probability_randomly():
-    return random.choice([0, 5])  
-
+    return random.choice([0, 5])
 food = 0
 water = 0
-clothes = 0
+medicine = 0
 radiation_suit = 0
-total_items = 0
 day = 0
 health = 10
-medicine = 0
+max_health = 10
 game1 = True
-game2 = True
-lop = True
-
-print("You have a brand-new and happy family, but unfortunately, the Third World War has broken out. In desperation, all countries have resorted to nuclear weapons. One of them exploded 30 kilometers away from your home.")
-print("Now you have to lead your family to survive.")
-print("Do you want to start the game? yes or no ")   
+print("You were living alone in a remote town. Unfortunately, World War Three broke out and countries started using nuclear weappons. One of them exploded 30 kilometers away from you.")
+print("Now you have to make sure you can survive.")
+print("Do you want to start the game? yes or no ")
 user = input().lower()
-while lop:
-    if user == "yes":
-        while game1:
-            print("You can carry a total of ten items. Here is the list of items")
-            print("1. Food\n2. Water\n3. Clothes\n4. Radiation suit")
-            choice = input("Which items would you like to choose? (Enter number) ") 
+if user == "yes":
+    while game1:
+        print("You can carry a total of ten items. Here is the list of items:")
+        print("1. Food\n2. Water\n3. Medicine\n4. Radiation suit")
+        choice = input("Which items would you like to choose? (Enter number) ")
 
-            if choice in ["1", "2", "3", "4"]:
-                number = int(input("How much do you want to take? "))
-                if choice == "1":
-                    food += number
-                elif choice == "2":
-                    water += number
-                elif choice == "3":
-                    clothes += number
-                elif choice == "4":
-                    radiation_suit += number
-            else:
-                print("Please choose a valid number.")
-
-            if water + food + clothes + radiation_suit > 10:
-                print("It is too much, you can only bring ten items.")
-                food, water, clothes, radiation_suit = 0, 0, 0, 0  
-            elif water + food + clothes + radiation_suit == 10:
-                print("That's enough. You're going to the basement to escape this disaster.")
-                game1 = False
-        print("\nYou will carry these items to await military rescue.")
-        print(f"Day {day}")
-
-    print("You eat some food and water for lunch.\nUnder the inffluence of nuclear radiation, you lose 1 point of health")
-    health -= 1
-    if water and food > 0:
-        water, food = reduce_randomly(water, food)
-        print(f"You still have {water} bottles of water.")
-        print(f"You still have {food} units of food.")
-    elif water and food == 0:
-        print("You don't have food")
-        health -= 1
-
-    print("After you finish your lunch, you have two choices:\n1. Put on a radiation suit and go outside to find food\n2. Stay in the basement")
-
-    while game2:
-        day += 1
-        choice = input()
-        if choice == "1":
-            if radiation_suit >= 1:
-                print("You have a radiation suit. Please select the destination you want to go:\n1. Restaurant\n2. Shop\n3. Hospital")
-                location_choice = input()
-
-                if location_choice == "1":
-                    print("You choose to go to a restaurant.")
-                    if random.random() < 0.5:
-                        print("The restaurant is open.")
-                        food_found = probability_randomly()
-                        water_found = probability_randomly()
-                        if food_found == 0:
-                            print("You don't find any food.")
-                        else:
-                            print(f"You got {food_found} units of food.")
-                            food += food_found
-                        if water_found == 0:
-                            print("You don't find any water.")
-                        else:
-                            print(f"You find {water_found} bottle of water")
-                            water += water_found
-                        print("You choose back to the basement")
-                    else:
-                        print("The restaurant is closed.\nYou choose back to the basement") 
-                if location_choice == "2":
-                    print("You choose to go to a shop")
-                    if random.random() < 0.5:
-                        print("The restaurant is open.")
-                        food_found = probability_randomly()
-                        water_found = probability_randomly()
-                        if food_found == 0:
-                            print("You don't find any food.")
-                        else:
-                            print(f"You got {food_found} units of food.")
-                            food += food_found
-                        if water_found == 0:
-                            print("You don't find any water.")
-                        else:
-                            print(f"You find {water_found} bottle of water")
-                            water += water_found
-                        print("You choose back to the basement")
-                    else:
-                        print("The shop is closed.\nDo you want to go to othehr way?yes or no")
-                if location_choice == "3":
-                    if random.random() < 0.5:
-                        print("The hospital is open.")
-                        medicine_found = probability_randomly()
-                        if medicine_found == 0:
-                            print("You don't find any medicine")
-                        else:
-                            print(f"You got {medicine_found} units of medicine")
-                            medicine += medicine_found
-        elif choice == "2":
-            print("You chose to stay in the basement and rest.")
-            game2 = False 
+        if choice in ["1", "2", "3", "4"]:
+            number = int(input("How much do you want to take? "))
+            if choice == "1":
+                food += number
+            elif choice == "2":
+                water += number
+            elif choice == "3":
+                medicine += number
+            elif choice == "4":
+                radiation_suit += number
         else:
-            print("Please enter a valid choice (1 or 2).")
-        print("You eat some food and water for dinner.\nUnder the inffluence of nuclear radiation, you lose 1 point of health")
-        health -= 1
-        if water and food > 0:
-            water, food = reduce_randomly(water, food)
-            print(f"You still have {water} bottles of water.")
-            print(f"You still have {food} units of food.")
-        elif water and food == 0:
-            print("You don't have food")
+            print("Please choose a valid number.")
+
+        if food + water + medicine + radiation_suit > 10:
+            print("Too much! You can only bring 10 items total.")
+            food = water = medicine = radiation_suit = 0
+        elif food + water + medicine + radiation_suit == 10:
+            print("Perfect. You head into the basement to escape the disaster.")
+            game1 = False
+    while health > 0 and day < 7:
+        day += 1
+        print(f"\n--- Day {day} ---")
+        print(f"Health: {health}")
+        print(f"Food: {food} | Water: {water} | Medicine: {medicine} | Radiation suits: {radiation_suit}")
+        print("\nLunch time:")
+        food, water, used_food, used_water = reduce_randomly(food, water)
+        print(f"Used {used_food} food and {used_water} water.")
+        if used_food < 1 or used_water < 1:
+            print("Not enough food or water! You lose 1 extra health.")
             health -= 1
-    if day < 3:
-        continue
+        print("Nuclear radiation affects your body. You lose 1 health.")
+        health -= 1
+        print(f"Current Health: {health}")
+        print("\nWhat do you want to do after lunch?\n1. Go outside\n2. Stay in basement\n3. Use medicine")
+        action = input()
+        if action == "1":
+            if radiation_suit > 0:
+                print("You have a radiation suit. Where do you want to go?\n1. Restaurant\n2. Shop\n3. Hospital")
+                loc = input()
+                if loc in ["1", "2"]:
+                    print("You go out scavenging...")
+                    if random.random() < 0.5:
+                        print("The place is open!")
+                        food_found = probability_randomly()
+                        water_found = probability_randomly()
+                        if food_found > 0:
+                            print(f"You found {food_found} food.")
+                            food += food_found
+                        else:
+                            print("No food found.")
+                        if water_found > 0:
+                            print(f"You found {water_found} water.")
+                            water += water_found
+                        else:
+                            print("No water found.")
+                    else:
+                        print("It’s closed. You return empty-handed.")
+                elif loc == "3":
+                    print("You head to the hospital...")
+                    if random.random() < 0.5:
+                        med_found = probability_randomly()
+                        if med_found > 0:
+                            print(f"You found {med_found} medicine.")
+                            medicine += med_found
+                        else:
+                            print("No medicine found.")
+                    else:
+                        print("Hospital is closed.")
+            else:
+                print("You don't have a radiation suit and can't go outside.")
+        elif action == "2":
+            print("You stayed in the basement and rested.")
+        elif action == "3":
+            if medicine > 0:
+                medicine -= 1
+                healed = min(3, max_health - health)
+                health += healed
+                print(f"You used 1 medicine and recovered {healed} health.")
+            else:
+                print("You have no medicine to use.")
+        else:
+            print("Invalid choice. You lose your chance to act.")
+            print("\nDinner time:")
+        food, water, used_food, used_water = reduce_randomly(food, water)
+        print(f"Used {used_food} food and {used_water} water.")
+        if used_food < 1 or used_water < 1:
+            print("Not enough food or water! You lose 1 extra health.")
+            health -= 1
+        print("More radiation exposure. You lose 1 more health.")
+        health -= 1
+        print(f"End of Day {day} | Health: {health}")
+        print(f"Remaining - Food: {food}, Water: {water}, Medicine: {medicine}\n")
+    if health <= 0:
+        print("\nYou couldn't survive the nuclear aftermath. Game Over.")
+    else:
+        print(f"\nAfter {day} difficult days, the military arrives and rescues your family. You survived. Congratulations!")
+else:
+    print("Ok, see you next time")
