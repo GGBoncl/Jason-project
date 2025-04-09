@@ -124,4 +124,4 @@ if user == "yes":
     else:
         print(f"\nAfter {day} difficult days, the military arrives and rescues your family. You survived. Congratulations!")
 else:
-    print("Ok, see you next time")
+    print("Ok, bye")
