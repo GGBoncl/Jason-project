@@ -77,7 +77,7 @@ while loop:
                     p = input()
                     if p in ["1", "2"]:
                         print("You go out scavenging...")
-                        if random.random() < 0.5:
+                        if random.random() > 0.5:
                             print("The place is open!")
                             food_found = probability_randomly()
                             water_found = probability_randomly()
