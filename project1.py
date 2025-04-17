@@ -128,10 +128,16 @@ while loop:
             health -= 1
             print(f"End of Day {day} | Health: {health}")
             print(f"Remaining - Food: {food}, Water: {water}, Medicine: {medicine}\n")
-
+            if health <= 0:
+                print("\nYou couldn't survive the nuclear aftermath. Game Over.")
+                break
+            elif health > 0 and day == 7:
+                print(f"\nAfter {day} difficult days, the military arrives and rescues your family. You survived. Congratulations!")
+                break 
             
     elif user == "no":
         print("Ok, bye")
         break
     else:
         print("Please input yes or no")
+        continue
