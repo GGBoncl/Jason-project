@@ -1,4 +1,5 @@
 import random
+
 def reduce_randomly(a, b):
     used_a = random.choice([1, 2])
     used_b = random.choice([1, 2])
@@ -9,6 +10,7 @@ def reduce_randomly(a, b):
     return max(a, 0), max(b, 0), actual_used_a, actual_used_b
 def probability_randomly():
     return random.choice([0, 6])
+
 food = 0
 water = 0
 medicine = 0
@@ -18,12 +20,11 @@ health = 10
 max_health = 10
 game1 = True
 loop = True
+
 print("You were living alone in a remote town. Unfortunately, World War Three broke out and countries started using nuclear weappons. One of them exploded 30 kilometers away from you.")
 print("Now you have to make sure you can survive.")
 print("Do you want to start the game? yes or no ")
 
-
-    
 while game1:
     user = input().lower()
     if user == "yes":
@@ -56,6 +57,7 @@ while game1:
     else:
         print("Please input yes or no")
         continue
+
 while health > 0 and day < 7:
     day += 1
     print(f"\n--- Day {day} ---")
@@ -140,5 +142,4 @@ while health > 0 and day < 7:
         break
     elif health > 0 and day == 7:
         print(f"\nAfter {day} difficult days, the military arrives and rescues your family. You survived. Congratulations!")
-        break       
-            
+        break
