@@ -25,9 +25,9 @@ print("You were living alone in a remote town. Unfortunately, World War Three br
 print("Now you have to make sure you can survive.")
 print("Do you want to start the game? yes or no ")
 
-while game1:
-    user = input().lower()
-    if user == "yes":
+user = input().lower()
+if user == "yes":
+    while game1:
         print("You can carry a total of ten items. Here is the list of items:")
         print("1. Food\n2. Water\n3. Medicine\n4. Radiation suit")
         choice = input("Which items would you like to choose? (Enter number) ")
@@ -51,13 +51,11 @@ while game1:
         elif food + water + medicine + radiation_suit == 10:
             print("You head into the basement to escape the disaster.")
             game1 = False
-    elif user == "no":
-        print("Ok, bye")
-        break
-    else:
-        print("Please input yes or no")
-        continue
-
+elif user == "no":
+    print("Ok, bye")
+else:
+    print("Please input yes or no")
+    
 while health > 0 and day < 7:
     day += 1
     print(f"\n--- Day {day} ---")
